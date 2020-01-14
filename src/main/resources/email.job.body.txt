@@ -1,0 +1,22 @@
+
+Report Out Job Output
+===================================
+
+Hello,
+
+The email is being sent to you because the following job has been executed by Report Out. The results of this job are attached to this message.
+
+Job Title
+${job.title}
+
+Job Description	
+${job.description}
+
+Successful?	
+${processResult.successful}
+
+Message	
+${processResult.message}
+
+Records	
+${processResult.records}    

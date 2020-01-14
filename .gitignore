@@ -1,0 +1,9 @@
+build/
+dist/
+/target/
+/nbproject/
+.idea
+ReportOutFrontEnd.iml
+ReportOutBackEnd.iml
+src/main/resources/drivers/*
+*.iml

@@ -1,0 +1,22 @@
+
+Report Out Summary Report
+===================================
+
+Hello,
+
+The email is being sent to you because the following job has been executed by Report Out. This is only a status report and this message doesn't contain any data from the execution of this job.
+
+Successful?
+${processResult.successful}
+
+Job Title
+${job.title}
+
+Job Description	
+${job.description}
+
+Message	
+${processResult.message}
+
+Records	
+${processResult.records}    

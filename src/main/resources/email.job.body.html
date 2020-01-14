@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>Report Out</title>
+</head>
+<body bgcolor="#f6f6f6" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; -webkit-font-smoothing: antialiased; height: 100%; -webkit-text-size-adjust: none; width: 100% !important; margin: 0; padding: 0; background-color:#f6f6f6">
+<div style="margin-top: 20px; margin-bottom: 20px; margin-left:auto; margin-right: auto; width: 600px; background-color: #fff; padding: 20px; box-shadow: 0px 0px 25px #888888;">
+
+    <h3 style="color: #507028; padding-top: 0px; margin-top: 0px; border-width: 0px 0px 1px 0px; border-color: #8DC747; border-style:solid;">Report Out Job Output</h3>
+
+    <p>
+        Hello,
+    </p>
+    <p>
+        The email is being sent to you because the following job has been executed by <strong>Report Out</strong>.  The results of this job are attached to this message.
+    </p>
+    <table style="width: 100%;" width="100%">
+        <tbody>
+        <tr>
+            <td>
+                Successful?
+            </td>
+            <td style="font-weight: bold;">
+                ${processResult.successful}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Job Title
+            </td>
+            <td style="font-weight: bold;">
+                ${job.title}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Job Description
+            </td>
+            <td style="font-weight: bold;">
+                ${job.description}
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Message
+            </td>
+            <td style="font-weight: bold;">
+                ${processResult.message}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Records
+            </td>
+            <td style="font-weight: bold;">
+                ${processResult.records}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div style="font-size: 70%; color: #383838; margin-top: 5px; margin-left:auto; margin-right: auto; width: 600px; text-align: center;">
+    Report Out - Created by <a href="http://cwssoft.com">CWS Software LLC</a>
+</div>
+</body>
+</html>
