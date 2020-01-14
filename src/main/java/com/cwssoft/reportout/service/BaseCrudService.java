@@ -1,5 +1,5 @@
 /*
- *  Copyright (C)  2012 Charles Syperski <csyperski@cwssoft.com>
+ *  2012 Charles Syperski <csyperski@cwssoft.com>
  *  
  */
 package com.cwssoft.reportout.service;
