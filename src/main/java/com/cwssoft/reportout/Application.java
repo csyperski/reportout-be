@@ -69,10 +69,6 @@ public class Application {
             "email.confirm.body.txt",
             "email.confirm.title",};
 
-    private static final String[] DRIVERS = {
-            "ojdbc7.jar"
-    };
-
     private static final String APPLICATION_PROPERTIES = "application.properties";
 
     public static final String REPORT_OUT_DATA = "ReportOutData";
@@ -154,24 +150,6 @@ public class Application {
                     if (!libDir.exists()) {
                         log.info("Creating lib directory...{}", libDir);
                         libDir.mkdirs();
-
-                        // on installation of the lib directory, copy the default
-                        // jar files into the lib directory
-                        Arrays.stream(DRIVERS).forEach(tmp -> {
-                            if (tmp != null) {
-                                File target = new File(libDir.getAbsolutePath() + File.separator + tmp);
-                                if (!target.exists()) {
-                                    log.info("Missing template {}, we'll create it now.", target.getAbsolutePath());
-                                    try (InputStream inputTemplate = Application.class.getResourceAsStream('/' + DIR_DRIVERS + "/" + tmp)) {
-                                        Path tar = target.toPath();
-                                        Files.copy(inputTemplate, tar);
-                                    } catch (Exception e) {
-                                        log.warn("Failed to copy: {} - {}", tmp, e.getMessage(), e);
-                                    }
-                                }
-                            }
-                        });
-
                     }
 
                     if (!templateDir.exists()) {
