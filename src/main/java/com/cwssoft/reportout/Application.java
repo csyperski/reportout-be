@@ -56,7 +56,7 @@ public class Application {
     @Setter
     @Value(value = "${reportout.jwt.issuer}")
     private String issuer;
-
+    
     private static final String KEY_REPORT_OUT_DATA_DIRECTORY = "reportOutDataDirectory";
 
     private static final String TEMPLATE_SOURCE = "/application.template.properties";
@@ -87,7 +87,6 @@ public class Application {
 
         SpringApplication app = new SpringApplication(Application.class);
         Map<String, Object> map = new HashMap<>();
-
         String fullDataDirectory = System.getProperty("user.home") + File.separator + REPORT_OUT_DATA;
 
         if (initStorage(fullDataDirectory)) {
@@ -125,6 +124,7 @@ public class Application {
         if (root != null) {
             try (BufferedReader templateReader =  new BufferedReader(new InputStreamReader(Application.class.getResourceAsStream(TEMPLATE_SOURCE)))) {
                 log.info("Checking for : {}", root);
+
                 File r = new File(root);
                 if (!r.exists()) {
                     r.mkdirs();
