@@ -3,9 +3,8 @@
  */
 package com.cwssoft.reportout.processor;
 
-import static com.cwssoft.reportout.util.StringUtils.getEmailsAsSet;
 import static com.cwssoft.reportout.util.SqlUtils.getBlackListedMatches;
-import static com.cwssoft.reportout.util.StringUtils.isNullOrBlank;
+import static com.cwssoft.reportout.util.StringUtils.*;
 
 import com.cwssoft.reportout.model.reports.DataSource;
 import com.cwssoft.reportout.model.reports.Job;
@@ -95,6 +94,11 @@ public class JobProcessor {
     @Setter
     @Value("${reportout.sql.blacklist}")
     private String blackListedSqlWords;
+
+    @Getter
+    @Setter
+    @Value("${spring.mail.from}")
+    private String mailFrom;
 
     public JobProcessor() {
     }
@@ -387,6 +391,10 @@ public class JobProcessor {
                     String html = loadTemplate(emailHtml).map(t -> getProcessedEmail(t, job, processResult)).orElse(null);
                     String text = loadTemplate(emailText).map(t -> getProcessedEmail(t, job, processResult)).orElse(null);
                     String title = loadTemplate(emailTitle).map(t -> getProcessedEmail(t, job, processResult)).orElse(null);
+
+                    if ( mailFrom != null && isValidEmail(mailFrom)) {
+                        helper.setFrom(mailFrom);
+                    }
 
                     helper.setText(text, html);
                     helper.setSubject(title);
