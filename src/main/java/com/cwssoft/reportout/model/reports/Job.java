@@ -100,6 +100,11 @@ public class Job extends VersionedObject {
 
     @Getter
     @Setter
+    @Column
+    private boolean onlySendIfResults = false;
+
+    @Getter
+    @Setter
     @OneToMany(mappedBy = "job", 
                cascade = {CascadeType.REMOVE}, 
                fetch = FetchType.EAGER, 

@@ -264,7 +264,7 @@ public class JobProcessor {
     }
 
     public ProcessResult execute(Job job, boolean forceDownloadTask) {
-        log.info("Starting execution of job: {}", job);
+        log.debug("Starting execution of job: {}", job);
         if (job == null) {
             return new ProcessResult(false, "Job is null!");
         }
@@ -278,7 +278,7 @@ public class JobProcessor {
         }
 
         if (deliverers != null) {
-            log.info("Number of deliverers: {}", deliverers.size());
+            log.debug("Number of deliverers: {}", deliverers.size());
         }
 
         log.debug("Connecting to database for job: {} - {}", job, job.getDataSource());
@@ -356,11 +356,17 @@ public class JobProcessor {
                 job.setJobAction(Job.ACTION_NONE);
             }
 
-            ProcessResult result = deliverers.stream().filter(jd
-                    -> jd.canHandleJob(job)
-            ).findAny().map(processor
-                    -> processor.deliver(job, csv.toString(), finalRowCount)
-            ).orElse(null);
+            ProcessResult result = null;
+            boolean deliver = ! job.isOnlySendIfResults() || finalRowCount > 0 || job.getJobAction() == Job.ACTION_NONE;
+            if ( deliver ) {
+                result = deliverers.stream().filter(jd
+                        -> jd.canHandleJob(job)
+                ).findAny().map(processor
+                        -> processor.deliver(job, csv.toString(), finalRowCount)
+                ).orElse(null);
+            } else {
+                result = new ProcessResult(true, "No data was returned so no data will be delivered");
+            }
 
             if (result == null) {
                 return new ProcessResult(false, "No Result was returned from the Job Deliverers");
